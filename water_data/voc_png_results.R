@@ -203,4 +203,6 @@ write_csv(voc_mast, paste0(vocDir, "Maui_Master_VOC_Sheet-updated-url.csv"))
 # update feature layer in ArcGIS Online ("Overwrite entire feature layer")
 # this will then automatically update the web map and dashboard
 
+# push updated scripts to git (not raw data!)
+
 ### END ###
