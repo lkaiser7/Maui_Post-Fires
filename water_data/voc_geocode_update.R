@@ -20,17 +20,17 @@ list.files(vocDir)
 
 ### DATA ###
 
-# DOWNLOAD NEW DATA UPDATE (current as of 11/09/2023)
+# DOWNLOAD NEW DATA UPDATE (current as of 11/20/2023)
 # check if up to date with current Google Sheet
 # https://docs.google.com/spreadsheets/d/1lMeStcrFw_LnOJJsD5aB_aRGTKpOSq5I9Q0cIUR_vnY/edit?usp=sharing
 
 # new master sheet
 new_loc<-read_csv(paste0(vocDir, "MASTER_Maui_VOC_Sheet.csv"))
-new_loc
+tail(new_loc)
 
 # previous geocoded master sheet
-prev_loc<-read.xlsx(paste0(vocDir, "Maui_Master_VOC_Sheet-103023.xlsx"))
-#prev_loc<-read_csv(paste0(vocDir, "Maui_Master_VOC_Sheet-103023.csv"))
+prev_loc<-read.xlsx(paste0(vocDir, "Maui_Master_VOC_Sheet-111823.xlsx"))
+#prev_loc<-read_csv(paste0(vocDir, "Maui_Master_VOC_Sheet-111823.csv"))
 tail(prev_loc)
 
 # check entry differences
@@ -72,7 +72,7 @@ as.data.frame(tail(new_loc, n = new_entry))
 
 # check NAs
 na_check<-new_loc[which(is.na(new_loc$X)),]
-na_check$Location # 17
+na_check$Location # 26
 
 # MANUAL FILL (from Google Maps search)
 # new_loc$X[which(new_loc$Location == "1739 Ainakea Place")]<--156.68557
@@ -89,12 +89,17 @@ new_loc$Y[which(new_loc$Location == "15 Wai Kulu Place, Lahaina HI 96761")]<-20.
 # new_loc$Y[which(new_loc$Location == "15200 Haleakala HWY")]<-20.7777746
 # new_loc$X[which(new_loc$Location == "15200 Haleakala Hwy")]<--156.3104874
 # new_loc$Y[which(new_loc$Location == "15200 Haleakala Hwy")]<-20.7777746
+new_loc$X[which(new_loc$Location == "4422 lower kula rd kula hi 96790 United States")]<--156.3301738
+new_loc$Y[which(new_loc$Location == "4422 lower kula rd kula hi 96790 United States")]<-20.7616131
 new_loc$X[which(new_loc$Location == "4422 A Lower Kula Rd")]<--156.3301738
 new_loc$Y[which(new_loc$Location == "4422 A Lower Kula Rd")]<-20.7616131
-new_loc$Location[which(is.na(new_loc$X))] # 13
+new_loc$X[which(new_loc$Location == "21 Kai Nana Pl Kula HI 96790 United States")]<--156.3301997
+new_loc$Y[which(new_loc$Location == "21 Kai Nana Pl Kula HI 96790 United States")]<-20.760726
+
+new_loc$Location[which(is.na(new_loc$X))] # 16
 
 # save updated data file (csv for arc online and xlsx to view and edit)
-#write_csv(new_loc, paste0(vocDir, "Maui_Master_VOC_Sheet-110923.csv"))
-write.xlsx(new_loc, paste0(vocDir, "Maui_Master_VOC_Sheet-110923.xlsx"))
+#write_csv(new_loc, paste0(vocDir, "Maui_Master_VOC_Sheet-112023.csv"))
+write.xlsx(new_loc, paste0(vocDir, "Maui_Master_VOC_Sheet-112023.xlsx"))
 
 ### END ###
