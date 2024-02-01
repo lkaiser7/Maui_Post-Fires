@@ -28,7 +28,7 @@ gitDir<-"C:/Users/lkais/Dropbox/PacIOOS/Projects/Maui_Fires_Hub/water_data/VOC_P
 ### DATA ###
 
 # master sheet
-voc_mast<-read.xlsx(paste0(vocDir, "Maui_Master_VOC_Sheet-121823.xlsx"))
+voc_mast<-read.xlsx(paste0(vocDir, "Maui_Master_VOC_Sheet-013124.xlsx"))
 head(voc_mast)
 table(voc_mast$Results.Link)
 voc_orig<-voc_mast
@@ -37,7 +37,7 @@ voc_orig<-voc_mast
 table(voc_mast$Post.Results, useNA = "ifany")
 # filter results 
 voc_mast<-voc_mast[which(is.na(voc_mast$Post.Results)),]
-head(voc_mast) # 372/407 records to release
+head(voc_mast) # 416/451 records to release
 
 # git image files path
 pngDir<-paste0(gitDir, "Scripts/temp/")
@@ -63,15 +63,15 @@ voc_mast$Results.Link<-png_files$url.link[match(toupper(voc_mast$Sample.ID),
                                                 toupper(png_files$Sample.ID))]
 head(voc_mast)
 tail(voc_mast)
-table(is.na(voc_mast$Results.Link)) # 351 results matched
-# 21 missing results
+table(is.na(voc_mast$Results.Link)) # 382 results matched
+# 34 missing results
 voc_mast[,1][is.na(voc_mast$Results.Link)]
 
-# 54 unreleased png files
+# 55 unreleased png files
 no_png<-anti_join(png_files, voc_mast)
 # head(no_png)
 no_png$png.file
-# 34 samples with no results
+# 47 samples with no results
 no_mast<-anti_join(voc_mast, png_files)
 # head(no_mast)
 no_mast$Sample.ID
@@ -94,37 +94,37 @@ voc_mast$Results.Link[which(voc_mast$Sample.ID == "9-29-JES-1")]<-
   png_files$url.link[which(png_files$png.file == "9-26-JES-1_.png")]
 
 ### PREVIOUS MANUAL EDITS IF NEEDED ###
-# # "8-30-23-KELLIE-1_.png"<-"8-30-23-kellie-1"   
-# voc_mast$Results.Link[which(voc_mast$Sample.ID == "8-30-23-kellie-1")]<-
-#   png_files$url.link[which(png_files$png.file == "8-30-23-KELLIE-1_.png")]
-# # "8-30-23-KELLIE-2_.png"<-"8-30-23-kellie-2"
-# voc_mast$Results.Link[which(voc_mast$Sample.ID == "8-30-23-kellie-2")]<-
-#   png_files$url.link[which(png_files$png.file == "8-30-23-KELLIE-2_.png")]
-# # "9-1-23-KELLIE-1_.png"<-"9-1-23-Kellie-1"  
-# voc_mast$Results.Link[which(voc_mast$Sample.ID == "9-1-23-Kellie-1")]<-
-#   png_files$url.link[which(png_files$png.file == "9-1-23-KELLIE-1_.png")]
-# # "9-1-23-KELLIE-2_.png"<-"9-1-23-Kellie-2" 
-# voc_mast$Results.Link[which(voc_mast$Sample.ID == "9-1-23-Kellie-2")]<-
-#   png_files$url.link[which(png_files$png.file == "9-1-23-KELLIE-2_.png")]
-# # "9-1-23-KELLIE-3_.png"<-"9-1-23-Kellie-3"
-# voc_mast$Results.Link[which(voc_mast$Sample.ID == "9-1-23-Kellie-3")]<-
-#   png_files$url.link[which(png_files$png.file == "9-1-23-KELLIE-3_.png")]
-# # "9-14-CKS-1_.png"<-"9-14-Cks-1"            
-# voc_mast$Results.Link[which(voc_mast$Sample.ID == "9-14-Cks-1")]<-
-#   png_files$url.link[which(png_files$png.file == "9-14-CKS-1_.png")]
-# # "9-14-CKS-3_.png"<-"9-14-Cks-3"      
-# voc_mast$Results.Link[which(voc_mast$Sample.ID == "9-14-Cks-3")]<-
-#   png_files$url.link[which(png_files$png.file == "9-14-CKS-3_.png")]
-# # "9-14-CKS-5_.png"<-"9-14-Cks-5"
-# voc_mast$Results.Link[which(voc_mast$Sample.ID == "9-14-Cks-5")]<-
-#   png_files$url.link[which(png_files$png.file == "9-14-CKS-5_.png")]
-# # "09-14-CKS-6_.png"<-"09-14-Cks-6"  
-# voc_mast$Results.Link[which(voc_mast$Sample.ID == "09-14-Cks-6")]<-
-#   png_files$url.link[which(png_files$png.file == "09-14-CKS-6_.png")]
-# # "10-03-23-JL-05_nan.png"<-"10-03-23-Jl-05" 
-# voc_mast$Results.Link[which(voc_mast$Sample.ID == "10-03-23-Jl-05")]<-
-#   png_files$url.link[which(png_files$png.file == "10-03-23-JL-05_nan.png")]
-#
+# "8-30-23-KELLIE-1_.png"<-"8-30-23-kellie-1"
+voc_mast$Results.Link[which(voc_mast$Sample.ID == "8-30-23-kellie-1")]<-
+  png_files$url.link[which(png_files$png.file == "8-30-23-KELLIE-1_.png")]
+# "8-30-23-KELLIE-2_.png"<-"8-30-23-kellie-2"
+voc_mast$Results.Link[which(voc_mast$Sample.ID == "8-30-23-kellie-2")]<-
+  png_files$url.link[which(png_files$png.file == "8-30-23-KELLIE-2_.png")]
+# "9-1-23-KELLIE-1_.png"<-"9-1-23-Kellie-1"
+voc_mast$Results.Link[which(voc_mast$Sample.ID == "9-1-23-Kellie-1")]<-
+  png_files$url.link[which(png_files$png.file == "9-1-23-KELLIE-1_.png")]
+# "9-1-23-KELLIE-2_.png"<-"9-1-23-Kellie-2"
+voc_mast$Results.Link[which(voc_mast$Sample.ID == "9-1-23-Kellie-2")]<-
+  png_files$url.link[which(png_files$png.file == "9-1-23-KELLIE-2_.png")]
+# "9-1-23-KELLIE-3_.png"<-"9-1-23-Kellie-3"
+voc_mast$Results.Link[which(voc_mast$Sample.ID == "9-1-23-Kellie-3")]<-
+  png_files$url.link[which(png_files$png.file == "9-1-23-KELLIE-3_.png")]
+# "9-14-CKS-1_.png"<-"9-14-Cks-1"
+voc_mast$Results.Link[which(voc_mast$Sample.ID == "9-14-Cks-1")]<-
+  png_files$url.link[which(png_files$png.file == "9-14-CKS-1_.png")]
+# "9-14-CKS-3_.png"<-"9-14-Cks-3"
+voc_mast$Results.Link[which(voc_mast$Sample.ID == "9-14-Cks-3")]<-
+  png_files$url.link[which(png_files$png.file == "9-14-CKS-3_.png")]
+# "9-14-CKS-5_.png"<-"9-14-Cks-5"
+voc_mast$Results.Link[which(voc_mast$Sample.ID == "9-14-Cks-5")]<-
+  png_files$url.link[which(png_files$png.file == "9-14-CKS-5_.png")]
+"09-14-CKS-6_.png"<-"09-14-Cks-6"
+voc_mast$Results.Link[which(voc_mast$Sample.ID == "09-14-Cks-6")]<-
+  png_files$url.link[which(png_files$png.file == "09-14-CKS-6_.png")]
+# "10-03-23-JL-05_nan.png"<-"10-03-23-Jl-05"
+voc_mast$Results.Link[which(voc_mast$Sample.ID == "10-03-23-Jl-05")]<-
+  png_files$url.link[which(png_files$png.file == "10-03-23-JL-05_nan.png")]
+
 ### ADDITIONAL MANUAL EDITS FOR FUTURE RUNS ###
 # # "DBR-Spigot_unknown.png"<-"Diamond B Ranch- spigot after water"
 # voc_mast$Results.Link[which(voc_mast$Sample.ID == "Diamond B Ranch- spigot after water")]<-
@@ -166,7 +166,7 @@ voc_mast$Results.Link[which(voc_mast$Sample.ID == "9-29-JES-1")]<-
 # voc_mast$Results.Link[which(voc_mast$Sample.ID == "Z-1 House top of hill")]<-
 #   png_files$url.link[which(png_files$png.file == "Z-1_ Makanoe Place, .png")]
 
-# 18 missing public entries
+# 31 missing public entries
 table(is.na(voc_mast$Results.Link))
 voc_mast$Sample.ID[which(is.na(voc_mast$Results.Link))]
 # # return only completed results samples
@@ -178,8 +178,8 @@ for(p in 1:dim(voc_mast)[1]){  # p = 1
   # offset between 250-500 ft.
   xy_offset<-runif(n = 1, min = 0.0003, max = 0.00045)
   # randomly multiply by -1 or 1 to offset in different directions
-  voc_mast$X_adj[p]<-voc_mast$X[p] + (xy_offset * sample(c(-1, 1), 1))
-  voc_mast$Y_adj[p]<-voc_mast$Y[p] + (xy_offset * sample(c(-1, 1), 1))
+  voc_mast$X_adj[p]<-as.numeric(voc_mast$X[p]) + (xy_offset * sample(c(-1, 1), 1))
+  voc_mast$Y_adj[p]<-as.numeric(voc_mast$Y[p]) + (xy_offset * sample(c(-1, 1), 1))
 }
 
 # check how close coordinates are?
@@ -204,10 +204,10 @@ table(voc_mast$SampleType[which(voc_mast$FilterStatus == "Filtered")], useNA = "
 table(voc_mast$SampleType[which(voc_mast$FilterStatus == "Unfiltered")], useNA = "ifany")
 
 # save updated data file (csv for arc online and xlsx to view and edit)
-write_csv(voc_mast, paste0(vocDir, "Maui_Master_VOC_Sheet-121823-url.csv"))
+write_csv(voc_mast, paste0(vocDir, "Maui_Master_VOC_Sheet-013124-url.csv"))
 # SAVE AS SAME FILE NAME TO SEEMLESSLY UPLOAD TO ARCGIS ONLINE!
 write_csv(voc_mast, paste0(vocDir, "Maui_Master_VOC_Sheet-updated-url.csv"))
-#write.xlsx(new_loc, paste0(vocDir, "Maui_Master_VOC_Sheet-121823.xlsx"))
+#write.xlsx(new_loc, paste0(vocDir, "Maui_Master_VOC_Sheet-013124.xlsx"))
 
 ### NEXT STEPS ###
 # update csv in ArcGIS Online Content

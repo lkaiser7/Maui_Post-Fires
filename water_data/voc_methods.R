@@ -26,4 +26,4 @@
 # WRRC Water Sampling Results Dashboard will then subsequently be updated
 # https://www.arcgis.com/apps/dashboards/7405acc0abbb45a2b3e33f54e9162261 
 
-### REPEAT UPDATE AT LEAST WEEKLY OR AS NEEDED ###
+### REPEAT UPDATE AS NEEDED ###

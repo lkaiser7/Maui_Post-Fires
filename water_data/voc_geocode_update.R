@@ -20,7 +20,7 @@ list.files(vocDir)
 
 ### DATA ###
 
-# DOWNLOAD NEW DATA UPDATE (current as of 12/18/2023)
+# DOWNLOAD NEW DATA UPDATE (current as of 01/31/2024)
 # check if up to date with current Google Sheet
 # https://docs.google.com/spreadsheets/d/1lMeStcrFw_LnOJJsD5aB_aRGTKpOSq5I9Q0cIUR_vnY/edit?usp=sharing
 
@@ -29,12 +29,13 @@ new_loc<-read_csv(paste0(vocDir, "MASTER_Maui_VOC_Sheet.csv"))
 tail(new_loc)
 
 # previous geocoded master sheet
-prev_loc<-read.xlsx(paste0(vocDir, "Maui_Master_VOC_Sheet-112023.xlsx"))
-#prev_loc<-read_csv(paste0(vocDir, "Maui_Master_VOC_Sheet-112023.csv"))
+prev_loc<-read.xlsx(paste0(vocDir, "Maui_Master_VOC_Sheet-121823.xlsx"))
+#prev_loc<-read_csv(paste0(vocDir, "Maui_Master_VOC_Sheet-121823.csv"))
 tail(prev_loc)
 
 # check entry differences
 new_entry<-dim(new_loc)[1]-dim(prev_loc)[1]
+new_entry
 
 # subset new data
 loc_update<-tail(new_loc, n = new_entry)
@@ -75,9 +76,9 @@ as.data.frame(tail(new_loc, n = new_entry))
 
 # check NAs
 na_check<-new_loc[which(is.na(new_loc$X)),]
-na_check$Location # 22
+na_check$Location # 25
 
-# MANUAL FILL (from Google Maps search)
+# MANUAL FILL (from Google Maps search) ## ALREADY RUN ##
 # new_loc$X[which(new_loc$Location == "1739 Ainakea Place")]<--156.68557
 # new_loc$Y[which(new_loc$Location == "1739 Ainakea Place")]<-20.9014923
 # new_loc$X[which(new_loc$Location == "136 Kulamanu Cir Kula Hi 96790 United States")]<--156.3196926
@@ -92,19 +93,19 @@ na_check$Location # 22
 # new_loc$Y[which(new_loc$Location == "15200 Haleakala Hwy Kula Hi 96790")]<-20.7777746
 # new_loc$X[which(new_loc$Location == "21 Kai Nana Pl Kula HI 96790 United States")]<--156.3301997
 # new_loc$Y[which(new_loc$Location == "21 Kai Nana Pl Kula HI 96790 United States")]<-20.760726
-new_loc$X[which(new_loc$Location == "4422 A Lower Kula Rd")]<--156.3301738
-new_loc$Y[which(new_loc$Location == "4422 A Lower Kula Rd")]<-20.7616131
-new_loc$X[which(new_loc$Location == "310 Waipoli Rd")]<--156.3313896
-new_loc$Y[which(new_loc$Location == "310 Waipoli Rd")]<-20.7395986
-new_loc$X[which(new_loc$Location == "321 Waipoli Rd")]<--156.3290839
-new_loc$Y[which(new_loc$Location == "321 Waipoli Rd")]<-20.7399932
-new_loc$X[which(new_loc$Location == "66 Cooke Rd")]<--156.3108239
-new_loc$Y[which(new_loc$Location == "66 Cooke Rd")]<-20.7602029
+# new_loc$X[which(new_loc$Location == "4422 A Lower Kula Rd")]<--156.3301738
+# new_loc$Y[which(new_loc$Location == "4422 A Lower Kula Rd")]<-20.7616131
+# new_loc$X[which(new_loc$Location == "310 Waipoli Rd")]<--156.3313896
+# new_loc$Y[which(new_loc$Location == "310 Waipoli Rd")]<-20.7395986
+# new_loc$X[which(new_loc$Location == "321 Waipoli Rd")]<--156.3290839
+# new_loc$Y[which(new_loc$Location == "321 Waipoli Rd")]<-20.7399932
+# new_loc$X[which(new_loc$Location == "66 Cooke Rd")]<--156.3108239
+# new_loc$Y[which(new_loc$Location == "66 Cooke Rd")]<-20.7602029
 
-new_loc$Location[which(is.na(new_loc$X))] # 16
+new_loc$Location[which(is.na(new_loc$X))] # 25
 
 # save updated data file (csv for arc online and xlsx to view and edit)
-#write_csv(new_loc, paste0(vocDir, "Maui_Master_VOC_Sheet-121323.csv"))
-write.xlsx(new_loc, paste0(vocDir, "Maui_Master_VOC_Sheet-121823.xlsx"))
+#write_csv(new_loc, paste0(vocDir, "Maui_Master_VOC_Sheet-013124.csv"))
+write.xlsx(new_loc, paste0(vocDir, "Maui_Master_VOC_Sheet-013124.xlsx"))
 
 ### END ###
