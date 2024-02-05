@@ -205,8 +205,14 @@ table(voc_mast$SampleType[which(voc_mast$FilterStatus == "Unfiltered")], useNA =
 
 # save updated data file (csv for arc online and xlsx to view and edit)
 write_csv(voc_mast, paste0(vocDir, "Maui_Master_VOC_Sheet-013124-url.csv"))
+
+# remove all PII to publish online
+names(voc_mast)
+voc_public<-voc_mast[,c(1, 23:26)]
+voc_public
+
 # SAVE AS SAME FILE NAME TO SEEMLESSLY UPLOAD TO ARCGIS ONLINE!
-write_csv(voc_mast, paste0(vocDir, "Maui_Master_VOC_Sheet-updated-url.csv"))
+write_csv(voc_public, paste0(vocDir, "Maui_Master_VOC_Sheet-public-url.csv"))
 #write.xlsx(new_loc, paste0(vocDir, "Maui_Master_VOC_Sheet-013124.xlsx"))
 
 ### NEXT STEPS ###
